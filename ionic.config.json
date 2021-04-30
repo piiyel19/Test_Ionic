@@ -1,5 +1,6 @@
 {
   "name": "myApp",
+  "app_id":"f90d0054"
   "integrations": {
     "capacitor": {}
   },
