@@ -2,7 +2,7 @@
   <ion-page>
     <ion-header :translucent="true">
       <ion-toolbar>
-        <ion-title>Home</ion-title>
+        <ion-title>Dashboard</ion-title>
       </ion-toolbar>
     </ion-header>
     
@@ -17,19 +17,29 @@
         <strong>Ready to create an app?</strong>
         <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
 
-        <ion-button @click="() => router.push('/login')">Go to Login</ion-button>
-        <ion-button @click="() => router.push('/register')">Go to Register</ion-button>
+        <ion-button @click="logout()">Logout</ion-button>
 
       </div>
     </ion-content>
   </ion-page>
 </template>
 
+
 <script lang="ts">
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
 import { defineComponent } from 'vue';
 
 import { useRouter } from 'vue-router';
+
+
+import { Drivers, Storage } from '@ionic/storage';
+import * as CordovaSQLiteDriver from 'localforage-cordovasqlitedriver';
+const storage = new Storage({
+  driverOrder: [CordovaSQLiteDriver._driver, Drivers.IndexedDB, Drivers.LocalStorage]
+});
+
+
+//console.log(name);
 
 export default defineComponent({
   name: 'Home',
@@ -43,7 +53,32 @@ export default defineComponent({
   setup() {
     const router = useRouter();
     return { router };
+  },
+  mounted() {
+    storage.create();
+    const dataPromise = storage.get('name');
+        
+    //storage.forEach((key, value, index) => {
+      //console.log(value);
+    //});
+
+
+    //console.log(dataPromise);
+  },
+  methods: {
+    logout(){
+    storage.create();
+      storage.clear();
+      console.log('Logout');
+
+      this.$router.push({
+          name: 'Login',
+          params: { id:'123' }
+      });
+
+    }
   }
+  
 });
 </script>
 

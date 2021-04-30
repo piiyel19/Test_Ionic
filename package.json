@@ -10,15 +10,20 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@capacitor/core": "2.4.7",
+    "@capacitor/android": "^2.4.7",
+    "@capacitor/core": "^2.4.7",
+    "@ionic/storage": "^3.0.4",
     "@ionic/vue": "^5.4.0",
     "@ionic/vue-router": "^5.4.0",
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "install": "^0.13.0",
+    "localforage-cordovasqlitedriver": "^1.8.0",
     "vue": "^3.0.0-0",
     "vue-router": "^4.0.0-0"
   },
   "devDependencies": {
-    "@capacitor/cli": "2.4.7",
+    "@capacitor/cli": "^2.4.7",
     "@types/jest": "^24.0.19",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",
